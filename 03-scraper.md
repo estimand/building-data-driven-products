@@ -41,6 +41,7 @@
    source ~/miniconda3/bin/activate tedbot
    ```
 1. Update the configuration file `tedbot/settings.py` using the values you retrieved during [database setup](02-db-setup.md):
+
    | Variable            | Value                             |
    | ------------------- | --------------------------------- |
    | `COSMOSDB_ENDPOINT` | Your Cosmos DB endpoint           |
