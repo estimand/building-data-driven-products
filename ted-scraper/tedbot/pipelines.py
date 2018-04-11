@@ -2,7 +2,7 @@ import json
 import scrapy
 
 from http import HTTPStatus
-from pydocumentdb import documents, document_client
+from pydocumentdb import document_client
 
 from .items import Speaker, Talk
 
