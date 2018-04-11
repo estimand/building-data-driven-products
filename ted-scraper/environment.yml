@@ -1,0 +1,9 @@
+name: tedbot
+channels:
+  - conda-forge
+dependencies:
+  - python=3
+  - beautifulsoup4
+  - scrapy
+  - pip:
+    - pydocumentdb
