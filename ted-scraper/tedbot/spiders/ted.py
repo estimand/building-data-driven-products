@@ -5,8 +5,6 @@ import scrapy
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-from ..items import Speaker, Talk
-
 
 class TEDSpider(scrapy.Spider):
     name = 'ted'
@@ -43,7 +41,7 @@ class TEDSpider(scrapy.Spider):
         json_info = json.loads(re.findall(r'({.+})', js_text, re.MULTILINE)[0])
         talk_info = json_info['talks'][0]
 
-        talk = Talk()
+        talk = {}
         talk['id'] = str(talk_info['id'])
         talk['url'] = json_info['url']
         talk['title'] = talk_info['title']
@@ -56,17 +54,16 @@ class TEDSpider(scrapy.Spider):
         talk['viewed'] = talk_info['viewed_count']
         talk['ratings'] = {x['name']: x['count'] for x in talk_info['ratings']}
 
-        # Build list of speakers, simultaneously yielding Speaker objects
+        # Build list of speakers
         talk['speakers'] = []
         for x in talk_info['speakers']:
-            speaker = Speaker()
+            speaker = {}
             speaker['id'] = str(x['id'])
             speaker['first_name'] = x['firstname']
             speaker['last_name'] = x['lastname']
             speaker['description'] = x['description']
             speaker['bio'] = x['whotheyare']
-            talk['speakers'].append(speaker['id'])
-            yield speaker
+            talk['speakers'].append(speaker)
 
         # Extract external links
         external_links = []
