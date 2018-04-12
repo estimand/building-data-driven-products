@@ -26,7 +26,7 @@
    ```
 1. Clone this repository from GitHub and move to the scraper folder:
    ```bash
-   git clone git@github.com:estimand/building-data-driven-products.git
+   git clone https://github.com/estimand/building-data-driven-products.git
    cd building-data-driven-products/ted-scraper
    ```
 1. Create a new environment for the scraper:
