@@ -1,5 +1,7 @@
 # Azure setup
 
+**Next**: [Cosmos DB setup](02-cosmosdb.md)
+
 ## Set up the Azure CLI
 
 1. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin

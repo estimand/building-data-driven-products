@@ -1,5 +1,7 @@
 # Cosmos DB setup
 
+**Previous**: [Azure setup](01-azure.md) | **Next**: [Scraper setup](03-scraper.md)
+
 ## Create resources
 
 1. Create a Cosmos DB account within your resource group:
