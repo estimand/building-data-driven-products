@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Talk #{{ talk['id'] }}{% endblock %}</h1>
+  <h2>{{ talk['title'] }}</h2>
+{% endblock %}
+
+{% block content %}
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">Event</th>
+      <td>{{ talk['event'] }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Filmed</th>
+      <td>{{ talk['filmed_at']|timestamp_to_dt|format_dt('%d %B %Y') }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Published</th>
+      <td>{{ talk['published_at']|timestamp_to_dt|format_dt('%d %B %Y') }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <td>{{ talk['description'] }}</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Speakers</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for speaker in talk['speakers'] %}
+    <tr>
+      <th scope="row"><a href="{{ url_for('talks.by_speaker', id=speaker['id']) }}">{{ speaker['id'] }}</a></th>
+      <td>{{ speaker['first_name'] }} {{ speaker['last_name'] }}</td>
+      <td>{{ speaker['description'] }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<p>
+  <a href="{{ talk['url'] }}" class="btn btn-primary">Watch on TED.com</a>
+</p>
+<hr/>
+<h3>Most similar talks</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Similarity</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for talk in similar_talks %}
+    <tr>
+      <th scope="row"><a href="{{ url_for('talks.details', id=talk['id']) }}">{{ talk['id'] }}</a></th>
+      <td>{{ talk['title'] }}</td>
+      <td>{{ '{:.2f}'.format(talk['similarity']*100) }}%</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

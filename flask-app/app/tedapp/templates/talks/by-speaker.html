@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Talks by {{ speaker['first_name'] }} {{ speaker['last_name'] }}{% endblock %}</h1>
+  <h2>{{ speaker['description'] }}</h2>
+{% endblock %}
+
+{% block content %}
+<p>{{ speaker['bio'] }}</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Filmed</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for talk in talks %}
+    <tr>
+      <th scope="row"><a href="{{ url_for('talks.details', id=talk['id']) }}">{{ talk['id'] }}</a></th>
+      <td>{{ talk['title'] }}</td>
+      <td>{{ talk['filmed_at']|timestamp_to_dt|format_dt('%d %B %Y') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
