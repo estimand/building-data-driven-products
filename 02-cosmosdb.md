@@ -4,10 +4,9 @@
 
 ## Create resources
 
-1. Create a Cosmos DB account within your resource group:
+1. Create a Cosmos DB account:
    ```bash
-   az cosmosdb create --name "gicampan-cosmosdb" \
-                      --resource-group "gicampan-data-prod"
+   az cosmosdb create --name "gicampan-cosmosdb"
    ```
 1. Create a database within the account:
    ```bash
@@ -18,12 +17,11 @@
 
 ## Retrieve credentials
 
-1. Retrieve your Cosmos DB endpoint:
+1. Retrieve your Cosmos DB endpoint and keys:
    ```bash
-   az cosmosdb list --resource-group "gicampan-data-prod" --output table
+   az cosmosdb list --output table
    ```
 1. Retrieve your Cosmos DB keys:
    ```bash
-   az cosmosdb list-keys --name "gicampan-cosmosdb" \
-                         --resource-group "gicampan-data-prod"
+   az cosmosdb list-keys --name "gicampan-cosmosdb"
    ```

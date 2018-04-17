@@ -1,17 +1,22 @@
 # Scraper setup
 
-## Create resources
+**Previous**: [Cosmos DB setup](02-cosmosdb.md) | **Next**: [Data analysis](04-analysis.md)
 
-1. Create a VM for the scraper:
-   ```bash
-   az vm create --name "gicampan-scraper" \
-                --resource-group "gicampan-data-prod" \
-                --image UbuntuLTS \
-                --size Standard_B1s \
-                --generate-ssh-keys \
-                --public-ip-address-dns-name "gicampan-scraper"
-   ```
-   You can list all available sizes using `az vm list-sizes --location uksouth --output table`
+## Create a VM
+
+Create a virtual machine to run the scraper:
+```bash
+az vm create --name "gicampan-scraper" \
+             --image "UbuntuLTS" \
+             --size "Standard_B1s" \
+             --generate-ssh-keys \
+             --public-ip-address-dns-name "gicampan-scraper"
+```
+
+You can list all available sizes using:
+```bash
+az vm list-sizes --location uksouth --output table
+```
 
 ## Set up a `conda` virtual environment
 
@@ -19,7 +24,7 @@
    ```bash
    ssh gicampan-scraper.uksouth.cloudapp.azure.com
    ```
-1. Download and install Miniconda:
+1. Download and install [Miniconda](https://conda.io/miniconda.html):
    ```bash
    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
    bash Miniconda3-latest-Linux-x86_64.sh -b
@@ -34,7 +39,7 @@
    ~/miniconda3/bin/conda env create -f environment.yml
    ```
 
-## Set up the scraper
+## Set up and start the scraper
 
 1. Activate the environment:
    ```bash
